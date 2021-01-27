@@ -16,6 +16,13 @@ public class LenderTest {
 
     @Test
     public void getAvailableFunds_returnsAvailableFundsForLender_zeroAmount() {
-        assertEquals(0, lender.getAvailableFunds());
+        assertEquals(0, lender.getAvailableFunds(),0);
     }
+
+    @Test
+    public void addDepositAmmount(){
+        lender.addDepositAmount(100);
+        assertEquals(100, lender.getAvailableFunds(),0);
+    }
+
 }

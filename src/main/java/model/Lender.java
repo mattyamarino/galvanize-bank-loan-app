@@ -2,7 +2,13 @@ package model;
 
 public class Lender {
 
-    public int getAvailableFunds() {
-        return 0;
+    double lenderFund;
+
+    public double getAvailableFunds() {
+        return this.lenderFund;
+    }
+
+    public void addDepositAmount(double depositAmount) {
+        this.lenderFund += depositAmount;
     }
 }
