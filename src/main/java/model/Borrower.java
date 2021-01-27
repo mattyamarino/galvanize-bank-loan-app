@@ -12,10 +12,6 @@ public class Borrower {
         this.savings = savings;
     }
 
-    public Borrower() {
-
-    }
-
     public Loan getQualification(double requestedAmount) {
         boolean hasEnoughsavings = this.savings >= (requestedAmount/4 );
         if(this.dti < 36.0 && this.creditScore > 620.0  && hasEnoughsavings){
@@ -27,17 +23,4 @@ public class Borrower {
         }
         return new Loan("not qualified", 0, "denied");
     }
-
-    public Loan reviewLoan(Loan loan, Lender lender, boolean offerAccepted) {
-        if(offerAccepted) {
-            loan.setStatus("accepted");
-        } else {
-            loan.setStatus("rejected");
-            lender.setLenderFund(lender.getAvailableFunds() + loan.getLoanAmount());
-        }
-        lender.setPendingFunds(lender.getPendingFunds() - loan.getLoanAmount());
-        return loan;
-    }
-
-
 }

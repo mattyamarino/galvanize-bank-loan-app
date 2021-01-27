@@ -3,17 +3,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta http-equiv="x-ua-compatible" content="IE=edge"/>
-<title>Test results - Class model.LenderTest</title>
+<title>Test results - Class model.BorrowerTest</title>
 <link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
 <link href="../css/style.css" rel="stylesheet" type="text/css"/>
 <script src="../js/report.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="content">
-<h1>Class model.LenderTest</h1>
+<h1>Class model.BorrowerTest</h1>
 <div class="breadcrumbs">
 <a href="../index.html">all</a> &gt; 
-<a href="../packages/model.html">model</a> &gt; LenderTest</div>
+<a href="../packages/model.html">model</a> &gt; BorrowerTest</div>
 <div id="summary">
 <table>
 <tr>
@@ -23,7 +23,7 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">11</div>
+<div class="counter">3</div>
 <p>tests</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.021s</div>
+<div class="counter">0.016s</div>
 <p>duration</p>
 </div>
 </td>
@@ -75,58 +75,18 @@
 </tr>
 </thead>
 <tr>
-<td class="success">addDepositAmount</td>
-<td class="success">0s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">checkForExpiredLoans_removesLoanFromList_andSendsAmountFromPendingBackToAvailable</td>
+<td class="success">loanQualified_partially_qualified_borrower</td>
 <td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">generateLoan_generatesLoanForBorrower</td>
+<td class="success">loanQualified_qualified_borrower</td>
+<td class="success">0.015s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">loanQualified_unqualified_borrower</td>
 <td class="success">0s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">getAvailableFunds_returnsAvailableFundsForLender_zeroAmount</td>
-<td class="success">0s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">getLoansByStatus_returnsLoansOfSelectedStatus</td>
-<td class="success">0.005s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">processLoan_putsQualifiedLoanOnHold</td>
-<td class="success">0s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">processLoan_successfullyProcessesQualifiedLoan</td>
-<td class="success">0s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">processLoan_throwsExceptionIfProcessingDeniedLoan</td>
-<td class="success">0.013s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">reviewLoanFromList_findsLoanInList_thenAdjustsStatus</td>
-<td class="success">0s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">reviewLoan_changesStatusToAcceptedAndRemovesAmmountFromLenderPendingFunds</td>
-<td class="success">0s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">reviewLoan_changesStatusToRejectedAndSendAmountToLenderAvailableAmount</td>
-<td class="success">0.002s</td>
 <td class="success">passed</td>
 </tr>
 </table>

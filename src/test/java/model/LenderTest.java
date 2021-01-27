@@ -8,11 +8,9 @@ import org.junit.rules.ExpectedException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class LenderTest {
     Lender lender;
@@ -103,5 +101,46 @@ public class LenderTest {
         assertEquals(expected, result);
     }
 
+    @Test
+    public void generateLoan_generatesLoanForBorrower() {
+        Borrower borrower = new Borrower(20, 760, 50000);
+        lender.generateLoan(borrower, 300000);
+        Loan expected = new Loan("partially qualified", 200000, "qualified");
+        assertEquals(expected, lender.loans.get(0));
+    }
 
+    @Test
+    public void reviewLoanFromList_findsLoanInList_thenAdjustsStatus() {
+        lender.setPendingFunds(100000);
+        Loan loan1 = new Loan("qualified",20000, "approved");
+        Loan loan2 = new Loan("not qualified",0, "denied");
+        lender.loans.add(loan1);
+        lender.loans.add(loan2);
+        lender.reviewLoanFromList(loan1, true);
+        Loan expectedResult = new Loan("qualified",20000, "accepted");
+        assertEquals(expectedResult,lender.loans.get(0));
+        assertEquals(80000,lender.getPendingFunds(),0);
+    }
+
+
+    @Test
+    public void reviewLoan_changesStatusToAcceptedAndRemovesAmmountFromLenderPendingFunds(){
+        lender.setPendingFunds(100000);
+        Loan loan = new Loan("qualified",20000, "approved");
+        Loan loanResult = lender.reviewLoan(loan,true);
+        Loan expectedResult = new Loan("qualified",20000, "accepted");
+        assertEquals(expectedResult,loanResult);
+        assertEquals(80000,lender.getPendingFunds(),0);
+    }
+
+    @Test
+    public void reviewLoan_changesStatusToRejectedAndSendAmountToLenderAvailableAmount(){
+        lender.setPendingFunds(100000);
+        Loan loan = new Loan("qualified",20000, "approved");
+        Loan loanResult = lender.reviewLoan(loan,false);
+        Loan expectedResult = new Loan("qualified",20000, "rejected");
+        assertEquals(expectedResult,loanResult);
+        assertEquals(80000,lender.getPendingFunds(),0);
+        assertEquals(20000, lender.getAvailableFunds(), 0);
+    }
 }

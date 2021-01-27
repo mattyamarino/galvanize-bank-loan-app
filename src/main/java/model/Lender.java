@@ -21,6 +21,18 @@ public class Lender {
         this.lenderFund += depositAmount;
     }
 
+    public double getPendingFunds() {
+        return this.pendingFunds;
+    }
+
+    public void setPendingFunds(double funds) {
+        this.pendingFunds = funds;
+    }
+
+    public void setLenderFund(double lenderFund) {
+        this.lenderFund = lenderFund;
+    }
+
     public Loan processLoan(Loan loan) {
         if(loan.getStatus().equals("denied")){
             throw new DeniedLoanException("Denied Load Do Not Proceed");
@@ -33,18 +45,6 @@ public class Lender {
             loan.setStatus("on hold");
         }
         return loan;
-    }
-
-    public double getPendingFunds() {
-        return this.pendingFunds;
-    }
-
-    public void setPendingFunds(double funds) {
-        this.pendingFunds = funds;
-    }
-
-    public void setLenderFund(double lenderFund) {
-        this.lenderFund = lenderFund;
     }
 
     public void checkForExpiredLoans() {
@@ -62,5 +62,30 @@ public class Lender {
         return loans.stream()
                 .filter(loan -> loan.getStatus().equals(requestedStatus))
                 .collect(Collectors.toList());
+    }
+
+
+    public void generateLoan(Borrower borrower, double amountToBorrow) {
+        loans.add(borrower.getQualification(amountToBorrow));
+    }
+
+    public Loan reviewLoan(Loan loan, boolean isAccepted) {
+        if(isAccepted) {
+            loan.setStatus("accepted");
+        } else {
+            loan.setStatus("rejected");
+            setLenderFund(getAvailableFunds() + loan.getLoanAmount());
+        }
+        setPendingFunds(getPendingFunds() - loan.getLoanAmount());
+        return loan;
+    }
+
+    public void reviewLoanFromList(Loan loanToUpdate, boolean isAccepted) {
+        for(Loan loan: loans) {
+            if(loanToUpdate == loan) {
+                loan = reviewLoan(loan, isAccepted);
+                break;
+            }
+        }
     }
 }

@@ -8,6 +8,7 @@ public class Loan {
     private double loanAmount;
     private String status;
     private LocalDate creationDate;
+    private String id;
 
     public Loan(String qualification, double loanAmount, String status) {
         this.qualification = qualification;
