@@ -57,7 +57,7 @@ public class LenderTest {
     @Test
     public void processLoan_throwsExceptionIfProcessingDeniedLoan() {
         expectedEx.expect(DeniedLoanException.class);
-        expectedEx.expectMessage("Denied Load Do Not Proceed");
+        expectedEx.expectMessage("Denied Loan Do Not Proceed");
 
         Loan loan = new Loan("not qualified", 0, "denied");
         lender.processLoan(loan);

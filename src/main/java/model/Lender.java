@@ -10,15 +10,15 @@ import java.util.stream.Collectors;
 public class Lender {
 
     List<Loan> loans = new ArrayList<>();
-    private double lenderFund;
+    private double availableFunds;
     private double pendingFunds;
 
     public double getAvailableFunds() {
-        return this.lenderFund;
+        return this.availableFunds;
     }
 
     public void addDepositAmount(double depositAmount) {
-        this.lenderFund += depositAmount;
+        this.availableFunds += depositAmount;
     }
 
     public double getPendingFunds() {
@@ -29,18 +29,18 @@ public class Lender {
         this.pendingFunds = funds;
     }
 
-    public void setLenderFund(double lenderFund) {
-        this.lenderFund = lenderFund;
+    public void setAvailableFunds(double availableFunds) {
+        this.availableFunds = availableFunds;
     }
 
     public Loan processLoan(Loan loan) {
         if(loan.getStatus().equals("denied")){
             throw new DeniedLoanException("Denied Loan Do Not Proceed");
         }
-        if(loan.getLoanAmount() <= lenderFund) {
+        if(loan.getLoanAmount() <= availableFunds) {
             loan.setStatus("approved");
             this.pendingFunds += loan.getLoanAmount();
-            this.lenderFund -= loan.getLoanAmount();
+            this.availableFunds -= loan.getLoanAmount();
         } else {
             loan.setStatus("on hold");
         }
@@ -53,7 +53,7 @@ public class Lender {
             if(loan.getCreationDate().isBefore(finalValidDate)) {
                 loan.setStatus("expired");
                 setPendingFunds(getPendingFunds() - loan.getLoanAmount());
-                setLenderFund(getAvailableFunds() + loan.getLoanAmount());
+                setAvailableFunds(getAvailableFunds() + loan.getLoanAmount());
             }
         }
     }
@@ -74,7 +74,7 @@ public class Lender {
             loanToReview.setStatus("accepted");
         } else {
             loanToReview.setStatus("rejected");
-            setLenderFund(getAvailableFunds() + loanToReview.getLoanAmount());
+            setAvailableFunds(getAvailableFunds() + loanToReview.getLoanAmount());
         }
         setPendingFunds(getPendingFunds() - loanToReview.getLoanAmount());
         return loanToReview;

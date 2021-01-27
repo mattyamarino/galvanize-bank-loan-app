@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="model.LenderTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2021-01-27T20:02:24" hostname="LTUS120094" time="0.02">
+<testsuite name="model.LenderTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2021-01-27T20:15:37" hostname="LTUS120094" time="0.028">
   <properties/>
-  <testcase name="reviewLoan_changesStatusToRejectedAndSendAmountToLenderAvailableAmount" classname="model.LenderTest" time="0.001"/>
+  <testcase name="reviewLoan_changesStatusToRejectedAndSendAmountToLenderAvailableAmount" classname="model.LenderTest" time="0.002"/>
   <testcase name="getAvailableFunds_returnsAvailableFundsForLender_zeroAmount" classname="model.LenderTest" time="0.0"/>
   <testcase name="processLoan_putsQualifiedLoanOnHold" classname="model.LenderTest" time="0.0"/>
-  <testcase name="processLoan_throwsExceptionIfProcessingDeniedLoan" classname="model.LenderTest" time="0.01"/>
+  <testcase name="processLoan_throwsExceptionIfProcessingDeniedLoan" classname="model.LenderTest" time="0.016"/>
   <testcase name="reviewLoanFromList_findsLoanInList_thenAdjustsStatus" classname="model.LenderTest" time="0.0"/>
-  <testcase name="addDepositAmount" classname="model.LenderTest" time="0.0"/>
-  <testcase name="generateLoan_generatesLoanForBorrower" classname="model.LenderTest" time="0.001"/>
-  <testcase name="getLoansByStatus_returnsLoansOfSelectedStatus" classname="model.LenderTest" time="0.003"/>
+  <testcase name="addDepositAmount" classname="model.LenderTest" time="0.001"/>
+  <testcase name="generateLoan_generatesLoanForBorrower" classname="model.LenderTest" time="0.0"/>
+  <testcase name="getLoansByStatus_returnsLoansOfSelectedStatus" classname="model.LenderTest" time="0.004"/>
   <testcase name="processLoan_successfullyProcessesQualifiedLoan" classname="model.LenderTest" time="0.0"/>
   <testcase name="reviewLoan_changesStatusToAcceptedAndRemovesAmmountFromLenderPendingFunds" classname="model.LenderTest" time="0.0"/>
   <testcase name="checkForExpiredLoans_removesLoanFromList_andSendsAmountFromPendingBackToAvailable" classname="model.LenderTest" time="0.0"/>
