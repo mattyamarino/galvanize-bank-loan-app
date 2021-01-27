@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="model.LenderTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-01-27T15:29:31" hostname="LTUS120094" time="0.001">
+  <properties/>
+  <testcase name="getAvailableFunds_returnsAvailableFundsForLender_zeroAmount" classname="model.LenderTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
