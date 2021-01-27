@@ -17,6 +17,10 @@ public class Borrower {
         if(this.dti < 36.0 && this.creditScore > 620.0  && hasEnoughsavings){
             return new Loan("qualified", requestedAmount, "qualified");
         }
-        return null;
+        else if(this.dti < 36.0 && this.creditScore > 620.0 ){
+            double partiallyqualifiedamount = this.savings * 4 ;
+            return new Loan("partially qualified", partiallyqualifiedamount, "qualified");
+        }
+        return new Loan("not qualified", 0, "denied");
     }
 }
