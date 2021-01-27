@@ -7,6 +7,9 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -78,6 +81,26 @@ public class LenderTest {
         assertEquals(expiredLoan, lender.loans.get(0));
         assertEquals(35000, lender.getPendingFunds(), 0);
         assertEquals(15000, lender.getAvailableFunds(), 0);
+    }
+
+    @Test
+    public void getLoansByStatus_returnsLoansOfSelectedStatus() {
+        Loan loan1 = new Loan("qualified", 15000, "qualified");
+        Loan loan2 = new Loan("qualified", 20000, "approved");
+        Loan loan3 = new Loan("partially qualified", 15000, "qualified");
+        Loan loan4 = new Loan("qualified", 20000, "on hold");
+        lender.loans.add(loan1);
+        lender.loans.add(loan2);
+        lender.loans.add(loan3);
+        lender.loans.add(loan4);
+
+        List<Loan> expected = new ArrayList<>();
+        expected.add(loan1);
+        expected.add(loan3);
+
+        List<Loan> result = lender.getLoansByStatus("qualified");
+
+        assertEquals(expected, result);
     }
 
 

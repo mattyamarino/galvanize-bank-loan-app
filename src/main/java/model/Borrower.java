@@ -38,4 +38,6 @@ public class Borrower {
         lender.setPendingFunds(lender.getPendingFunds() - loan.getLoanAmount());
         return loan;
     }
+
+
 }

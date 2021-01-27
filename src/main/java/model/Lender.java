@@ -5,6 +5,7 @@ import exception.DeniedLoanException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lender {
 
@@ -55,5 +56,11 @@ public class Lender {
                 setLenderFund(getAvailableFunds() + loan.getLoanAmount());
             }
         }
+    }
+
+    public List<Loan> getLoansByStatus(String requestedStatus) {
+        return loans.stream()
+                .filter(loan -> loan.getStatus().equals(requestedStatus))
+                .collect(Collectors.toList());
     }
 }
