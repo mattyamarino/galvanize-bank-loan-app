@@ -30,4 +30,19 @@ public class BorrowerTest {
         assertEquals(expectedLoanResult, loanResult);
     }
 
+    @Test
+    public void acceptLoan(){
+        Lender lender = new Lender();
+        lender.setPendingFunds(100000);
+
+        Loan loan = new Loan("qualified",20000, "approved");
+        Borrower borrower = new Borrower();
+        Loan loanResult = borrower.acceptLoan(loan,lender);
+        Loan expectedResult = new Loan("qualified",20000, "accepted");
+        assertEquals(expectedResult,loanResult);
+        assertEquals(80000,lender.getPendingFunds(),0);
+
+
+    }
+
 }

@@ -4,7 +4,8 @@ import exception.DeniedLoanException;
 
 public class Lender {
 
-    double lenderFund;
+    private double lenderFund;
+    private double pendingFunds;
 
     public double getAvailableFunds() {
         return this.lenderFund;
@@ -20,9 +21,19 @@ public class Lender {
         }
         if(loan.getLoanAmount() <= lenderFund) {
             loan.setStatus("approved");
+            this.pendingFunds += loan.getLoanAmount();
+            this.lenderFund -= loan.getLoanAmount();
         } else if (loan.getLoanAmount() > lenderFund) {
             loan.setStatus("on hold");
         }
         return loan;
+    }
+
+    public double getPendingFunds() {
+        return this.pendingFunds;
+    }
+
+    public void setPendingFunds(double funds) {
+        this.pendingFunds = funds;
     }
 }

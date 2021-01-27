@@ -33,6 +33,8 @@ public class LenderTest {
         lender.addDepositAmount(100000);
         Loan result = lender.processLoan(loan);
         assertEquals(expectedLoan, result);
+        assertEquals(85000 ,lender.getAvailableFunds(),0);
+        assertEquals(15000,lender.getPendingFunds(), 0);
     }
 
     @Test

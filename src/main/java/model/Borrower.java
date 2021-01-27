@@ -12,6 +12,10 @@ public class Borrower {
         this.savings = savings;
     }
 
+    public Borrower() {
+
+    }
+
     public Loan getQualification(double requestedAmount) {
         boolean hasEnoughsavings = this.savings >= (requestedAmount/4 );
         if(this.dti < 36.0 && this.creditScore > 620.0  && hasEnoughsavings){
@@ -22,5 +26,13 @@ public class Borrower {
             return new Loan("partially qualified", partiallyqualifiedamount, "qualified");
         }
         return new Loan("not qualified", 0, "denied");
+
+
+    }
+
+    public Loan acceptLoan(Loan loan, Lender lender) {
+        loan.setStatus("accepted");
+        lender.setPendingFunds(lender.getPendingFunds() - loan.getLoanAmount());
+        return loan;
     }
 }
