@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="model.BorrowerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2021-01-27T19:55:52" hostname="LTUS120094" time="0.016">
+<testsuite name="model.BorrowerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2021-01-27T20:02:24" hostname="LTUS120094" time="0.013">
   <properties/>
-  <testcase name="loanQualified_qualified_borrower" classname="model.BorrowerTest" time="0.015"/>
-  <testcase name="loanQualified_partially_qualified_borrower" classname="model.BorrowerTest" time="0.001"/>
+  <testcase name="loanQualified_qualified_borrower" classname="model.BorrowerTest" time="0.013"/>
+  <testcase name="loanQualified_partially_qualified_borrower" classname="model.BorrowerTest" time="0.0"/>
   <testcase name="loanQualified_unqualified_borrower" classname="model.BorrowerTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

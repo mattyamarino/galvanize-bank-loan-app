@@ -35,13 +35,13 @@ public class Lender {
 
     public Loan processLoan(Loan loan) {
         if(loan.getStatus().equals("denied")){
-            throw new DeniedLoanException("Denied Load Do Not Proceed");
+            throw new DeniedLoanException("Denied Loan Do Not Proceed");
         }
         if(loan.getLoanAmount() <= lenderFund) {
             loan.setStatus("approved");
             this.pendingFunds += loan.getLoanAmount();
             this.lenderFund -= loan.getLoanAmount();
-        } else if (loan.getLoanAmount() > lenderFund) {
+        } else {
             loan.setStatus("on hold");
         }
         return loan;
@@ -69,20 +69,20 @@ public class Lender {
         loans.add(borrower.getQualification(amountToBorrow));
     }
 
-    public Loan reviewLoan(Loan loan, boolean isAccepted) {
+    public Loan reviewLoan(Loan loanToReview, boolean isAccepted) {
         if(isAccepted) {
-            loan.setStatus("accepted");
+            loanToReview.setStatus("accepted");
         } else {
-            loan.setStatus("rejected");
-            setLenderFund(getAvailableFunds() + loan.getLoanAmount());
+            loanToReview.setStatus("rejected");
+            setLenderFund(getAvailableFunds() + loanToReview.getLoanAmount());
         }
-        setPendingFunds(getPendingFunds() - loan.getLoanAmount());
-        return loan;
+        setPendingFunds(getPendingFunds() - loanToReview.getLoanAmount());
+        return loanToReview;
     }
 
-    public void reviewLoanFromList(Loan loanToUpdate, boolean isAccepted) {
+    public void reviewLoanFromList(Loan loanToReview, boolean isAccepted) {
         for(Loan loan: loans) {
-            if(loanToUpdate == loan) {
+            if(loanToReview == loan) {
                 loan = reviewLoan(loan, isAccepted);
                 break;
             }
