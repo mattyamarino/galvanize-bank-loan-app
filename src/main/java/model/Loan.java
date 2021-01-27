@@ -47,9 +47,4 @@ public class Loan {
                 Objects.equals(status, loan.status) &&
                 Objects.equals(creationDate, loan.creationDate);
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(qualification, loanAmount, status, creationDate);
-    }
 }
