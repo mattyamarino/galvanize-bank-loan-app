@@ -2,8 +2,13 @@ package model;
 
 import exception.DeniedLoanException;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Lender {
 
+    List<Loan> loans = new ArrayList<>();
     private double lenderFund;
     private double pendingFunds;
 
@@ -35,5 +40,20 @@ public class Lender {
 
     public void setPendingFunds(double funds) {
         this.pendingFunds = funds;
+    }
+
+    public void setLenderFund(double lenderFund) {
+        this.lenderFund = lenderFund;
+    }
+
+    public void checkForExpiredLoans() {
+        LocalDate finalValidDate = LocalDate.now().minusDays(3);
+        for(Loan loan: loans) {
+            if(loan.getCreationDate().isBefore(finalValidDate)) {
+                loan.setStatus("expired");
+                setPendingFunds(getPendingFunds() - loan.getLoanAmount());
+                setLenderFund(getAvailableFunds() + loan.getLoanAmount());
+            }
+        }
     }
 }

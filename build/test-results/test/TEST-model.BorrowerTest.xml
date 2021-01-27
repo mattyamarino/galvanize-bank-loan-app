@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="model.BorrowerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2021-01-27T17:20:43" hostname="LTUS120094" time="0.011">
-  <properties/>
-  <testcase name="loanQualified_qualified_borrower" classname="model.BorrowerTest" time="0.009"/>
-  <testcase name="loanQualified_partially_qualified_borrower" classname="model.BorrowerTest" time="0.0"/>
-  <testcase name="loanQualified_unqualified_borrower" classname="model.BorrowerTest" time="0.0"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

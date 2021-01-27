@@ -31,18 +31,29 @@ public class BorrowerTest {
     }
 
     @Test
-    public void acceptLoan(){
+    public void reviewLoan_changesStatusToAcceptedAndRemovesAmmountFromLenderPendingFunds(){
         Lender lender = new Lender();
         lender.setPendingFunds(100000);
 
         Loan loan = new Loan("qualified",20000, "approved");
         Borrower borrower = new Borrower();
-        Loan loanResult = borrower.acceptLoan(loan,lender);
+        Loan loanResult = borrower.reviewLoan(loan,lender,true);
         Loan expectedResult = new Loan("qualified",20000, "accepted");
         assertEquals(expectedResult,loanResult);
         assertEquals(80000,lender.getPendingFunds(),0);
+    }
 
-
+    @Test
+    public void reviewLoan_changesStatusToRejectedAndSendAmountToLenderAvailableAmount(){
+        Lender lender = new Lender();
+        lender.setPendingFunds(100000);
+        Loan loan = new Loan("qualified",20000, "approved");
+        Borrower borrower = new Borrower();
+        Loan loanResult = borrower.reviewLoan(loan,lender,false);
+        Loan expectedResult = new Loan("qualified",20000, "rejected");
+        assertEquals(expectedResult,loanResult);
+        assertEquals(80000,lender.getPendingFunds(),0);
+        assertEquals(20000, lender.getAvailableFunds(), 0);
     }
 
 }

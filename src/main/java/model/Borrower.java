@@ -26,12 +26,15 @@ public class Borrower {
             return new Loan("partially qualified", partiallyqualifiedamount, "qualified");
         }
         return new Loan("not qualified", 0, "denied");
-
-
     }
 
-    public Loan acceptLoan(Loan loan, Lender lender) {
-        loan.setStatus("accepted");
+    public Loan reviewLoan(Loan loan, Lender lender, boolean offerAccepted) {
+        if(offerAccepted) {
+            loan.setStatus("accepted");
+        } else {
+            loan.setStatus("rejected");
+            lender.setLenderFund(lender.getAvailableFunds() + loan.getLoanAmount());
+        }
         lender.setPendingFunds(lender.getPendingFunds() - loan.getLoanAmount());
         return loan;
     }

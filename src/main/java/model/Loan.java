@@ -1,16 +1,19 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Loan {
     private String qualification;
     private double loanAmount;
     private String status;
+    private LocalDate creationDate;
 
     public Loan(String qualification, double loanAmount, String status) {
         this.qualification = qualification;
         this.loanAmount = loanAmount;
         this.status = status;
+        this.creationDate = LocalDate.now();
     }
 
     public double getLoanAmount() {
@@ -21,8 +24,16 @@ public class Loan {
         return status;
     }
 
+    public LocalDate getCreationDate() {
+        return creationDate;
+    }
+
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
     }
 
     @Override
@@ -32,11 +43,12 @@ public class Loan {
         Loan loan = (Loan) o;
         return Double.compare(loan.loanAmount, loanAmount) == 0 &&
                 Objects.equals(qualification, loan.qualification) &&
-                Objects.equals(status, loan.status);
+                Objects.equals(status, loan.status) &&
+                Objects.equals(creationDate, loan.creationDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(qualification, loanAmount, status);
+        return Objects.hash(qualification, loanAmount, status, creationDate);
     }
 }
